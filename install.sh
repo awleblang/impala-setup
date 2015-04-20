@@ -21,6 +21,9 @@ if ! test -f "$chef_binary"; then
   curl -L https://www.opscode.com/chef/install.sh | bash
 fi
 
+# Install git
+sudo apt-get install -y git
+
 cd $USER_HOME
 if ! test -d impala-setup; then
   sudo -u $USER git clone http://github.mtv.cloudera.com/dtsirogiannis/impala-setup.git
@@ -30,5 +33,6 @@ else
   sudo -u $USER git pull
 fi
 
+# Run chef-solo to configure the Impala dev machine
 sudo -u $USER sed -i "s/username = ''/username = '$USER'/" cookbooks/impala/attributes/default.rb
 "$chef_binary" -c solo.rb -j impala.json
