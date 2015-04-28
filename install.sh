@@ -26,7 +26,7 @@ sudo apt-get install -y git
 
 cd $USER_HOME
 if ! test -d impala-setup; then
-  sudo -u $USER git clone http://github.mtv.cloudera.com/dtsirogiannis/impala-setup.git
+  sudo -u $USER git clone https://github.com/awleblang/impala-setup.git
   cd impala-setup
 else
   cd impala-setup
