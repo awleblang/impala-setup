@@ -13,6 +13,8 @@ fi
 USER=$SUDO_USER
 USER_HOME=$(eval echo ~${SUDO_USER})
 
+sudo apt-get install -y curl
+
 chef_binary=/usr/bin/chef-solo
 # Are we on a vanilla system?
 if ! test -f "$chef_binary"; then
