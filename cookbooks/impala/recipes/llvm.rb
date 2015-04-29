@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 # Install LLVM
+Chef::Log.info("Building and installing llvm. This can take a long time...")
+
 bash "install_llvm" do
   user 'root'
   code <<-EOH

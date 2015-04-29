@@ -16,10 +16,23 @@ default['java']['jdk_version'] = '7'
 default['java']['oracle']['accept_oracle_download_terms'] = true
 
 # Postgres options
-if (node['platform_family'] == "debian" and node['platform_version'] == "14.04")
-  default['postgresql']['version'] = "9.3"
-else 
-  default['postgresql']['version'] = "9.1"
+case 
+  when (node['platform_family'] == "debian" and node['platform_version'] == "15.04")
+    default['postgresql']['pgdg']['release_apt_codename'] = 'trusty'
+    default['postgresql']['version']  =                     '9.4'
+    default['postgresql']['dir'] =                          "/etc/postgresql/#{default['postgresql']['version']}/main"
+    default['postgresql']['client']['packages'] =           ["postgresql-client-#{default['postgresql']['version']}", "libpq-dev"]
+    default['postgresql']['server']['packages'] =           ["postgresql-#{default['postgresql']['version']}"]
+    default['postgresql']['contrib']['packages'] =          ["postgresql-contrib-#{default['postgresql']['version']}"]
+
+    default['postgresql']['config']['data_directory'] =     "/var/lib/postgresql/#{default['postgresql']['version']}/main"
+    default['postgresql']['config']['hba_file'] =           "/etc/postgresql/#{default['postgresql']['version']}/main/pg_hba.conf"
+    default['postgresql']['config']['ident_file'] =         "/etc/postgresql/#{default['postgresql']['version']}/main/pg_ident.conf"
+    default['postgresql']['config']['external_pid_file'] =  "/var/run/postgresql/#{default['postgresql']['version']}-main.pid"
+  when (node['platform_family'] == "debian" and node['platform_version'] == "14.04")
+    default['postgresql']['version'] = "9.3"
+  when (node['platform_family'] == "debian" and node['platform_version'] == "12.04")
+    default['postgresql']['version'] = "9.1"
 end
 
 default['postgresql']['pg_hba'] = [{:type => 'local', :db => 'all', :user => 'postgres', :addr => nil, :method => 'trust'}, 
