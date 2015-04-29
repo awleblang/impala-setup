@@ -9,14 +9,14 @@
 # Setup lzo sources
 
 git "/home/#{node['impala_dev']['username']}/hadoop-lzo" do 
-  repository 'http://github.mtv.cloudera.com/CDH/hadoop-lzo.git'
+  repository 'https://github.com/cloudera/hadoop-lzo.git'
   user node['impala_dev']['username']
   revision node['hadoop-lzo']['branch']
   action :checkout
 end
 
 git "/home/#{node['impala_dev']['username']}/Impala-lzo" do
-  repository 'http://github.mtv.cloudera.com/CDH/Impala-lzo.git'
+  repository 'https://github.com/cloudera/impala-lzo.git'
   user node['impala_dev']['username']
   revision node['impala-lzo']['branch']
   action :checkout
