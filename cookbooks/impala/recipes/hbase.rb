@@ -14,7 +14,7 @@ bash 'setup_hbase_ssh' do
   cd /home/#{node['impala_dev']['username']}
   cat .ssh/id_rsa.pub >> .ssh/authorized_keys
   chmod 600 .ssh/authorized_keys 
-  ssh-keyscan -H github.mtv.cloudera.com >> .ssh/known_hosts
+  ssh-keyscan -H github.com >> .ssh/known_hosts
   chmod 600 .ssh/known_hosts
   EOH
 end
