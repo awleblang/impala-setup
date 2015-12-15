@@ -22,6 +22,7 @@ end
 
 bash 'generate_ssh_keys' do
   user node['impala_dev']['username']
+  not_if "test -f /home/#{node['impala_dev']['username']}/.ssh/id_rsa"
   code <<-EOH
   ssh-keygen -t rsa -N '' -q -f /home/#{node['impala_dev']['username']}/.ssh/id_rsa
   EOH
