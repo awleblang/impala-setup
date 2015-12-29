@@ -110,8 +110,6 @@ SSH_ENV="$HOME/.ssh/environment"
 export PATH=/usr/lib/ccache:$PATH
 export GERRIT_USER=
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle-amd64
-export BOOST_LIBRARYDIR=/usr/lib/x86_64-linux-gnu
-export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 export LC_ALL="en_US.UTF-8"
 
 clear
