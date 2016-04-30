@@ -12,13 +12,14 @@
 case node['platform_family']
 when "debian"
   Chef::Log.info('Debian family')
-  case 
+  case
   when node['platform_version'] == '15.04', node['platform_version'] == '14.04'
     Chef::Log.info('Version >= 14.04')
-    packages = ["build-essential", "ant", "zlib1g-dev", "libbz2-dev", "python-dev", 
-	 "automake", "libtool", "flex", "bison", "cmake", "pkg-config", "git", 
-	 "libssl-dev", "subversion", "libevent1-dev", "libsasl2-dev", "libldap2-dev", 
-	 "liblzo2-dev", "lzop", "maven", "libboost-all-dev", "ccache"]
+    packages = ["build-essential", "ant", "zlib1g-dev", "libbz2-dev", "python-dev",
+         "automake", "libtool", "flex", "bison", "cmake", "pkg-config", "git",
+         "libssl-dev", "subversion", "libevent1-dev", "libsasl2-dev", "libldap2-dev",
+         "liblzo2-dev", "lzop", "maven", "libboost-all-dev", "ccache", "python-pycurl",
+	 "libgnutls-dev"]
     packages.each do |pkg|
       package pkg
     end
@@ -48,12 +49,12 @@ when "debian"
       EOH
     end
   when node['platform_version'] == '12.04'
-    packages = ["build-essential", "ant", "libboost-dev", "libboost-thread-dev", 
-	  "libboost-test-dev", "libboost-program-options-dev", 
-	  "libboost-regex-dev", "libboost-system-dev", "libboost-filesystem-dev", 
-	  "zlib1g-dev", "libbz2-dev", "python-dev", "automake", "libtool", "flex", 
-	  "bison", "cmake", "pkg-config", "git", "libssl-dev", "subversion", 
-	  "libevent1-dev", "libsasl2-dev", "libldap2-dev", "libdb4.8-dev", "ccache"]
+    packages = ["build-essential", "ant", "libboost-dev", "libboost-thread-dev",
+                "libboost-test-dev", "libboost-program-options-dev", "libboost-regex-dev",
+                "libboost-system-dev", "libboost-filesystem-dev", "zlib1g-dev",
+                "libbz2-dev", "python-dev", "automake", "libtool", "flex", "bison",
+                "cmake", "pkg-config", "git", "libssl-dev", "subversion", "libevent1-dev",
+                "libsasl2-dev", "libldap2-dev", "libdb4.8-dev", "ccache"]
     packages.each do |pkg|
       package pkg
     end
@@ -80,11 +81,12 @@ end
 # Python packages
 include_recipe "python::pip"
 
-python_pkgs = ["allpairs", "pytest", "pytest-xdist", "paramiko", "texttable", 
-	       "prettytable", "sqlparse", "pywebhdfs", "gitpython", "jenkinsapi"]
+python_pkgs = ["allpairs", "pytest", "pytest-xdist", "paramiko", "texttable",
+	       "prettytable", "sqlparse", "pywebhdfs", "gitpython", "jenkinsapi",
+	       "python-jenkins"]
 
 python_pkgs.each do |pkg|
-  python_pip pkg do 
+  python_pip pkg do
     action :install
   end
 end
@@ -101,7 +103,7 @@ bash 'setup_lzo' do
     ln -s /usr/lib/x86_64-linux-gnu/liblzo2.a /usr/lib/liblzo2.a
   fi
   if ! test -f /usr/lib/liblzo2.so; then
-    ln -s /usr/lib/x86_64-linux-gnu/liblzo2.so /usr/lib/liblzo2.so  
+    ln -s /usr/lib/x86_64-linux-gnu/liblzo2.so /usr/lib/liblzo2.so
   fi
   EOH
 end
