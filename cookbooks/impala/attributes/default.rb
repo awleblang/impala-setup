@@ -31,8 +31,6 @@ case
     default['postgresql']['config']['external_pid_file'] =  "/var/run/postgresql/#{default['postgresql']['version']}-main.pid"
   when (node['platform_family'] == "debian" and node['platform_version'] == "14.04")
     default['postgresql']['version'] = "9.3"
-  when (node['platform_family'] == "debian" and node['platform_version'] == "12.04")
-    default['postgresql']['version'] = "9.1"
 end
 
 default['postgresql']['pg_hba'] = [{:type => 'local', :db => 'all', :user => 'postgres', :addr => nil, :method => 'trust'}, 

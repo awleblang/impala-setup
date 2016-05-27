@@ -22,12 +22,6 @@ git "/home/#{node['impala_dev']['username']}/Impala-lzo" do
   action :checkout
 end
 
-cookbook_file "build.xml" do
-  path "/home/#{node['impala_dev']['username']}/hadoop-lzo/build.xml"
-  action :create
-  mode 0644
-end
-
 bash 'build_lzo' do
   user node['impala_dev']['username']
   code <<-EOH
