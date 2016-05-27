@@ -19,7 +19,7 @@ when "debian"
          "automake", "libtool", "flex", "bison", "cmake", "pkg-config", "git",
          "libssl-dev", "subversion", "libevent1-dev", "libsasl2-dev", "libldap2-dev",
          "liblzo2-dev", "lzop", "maven", "libboost-all-dev", "ccache", "python-pycurl",
-	 "libgnutls-dev", "libgnutls-dev", "python-pycurl", "wget"]
+	 "libgnutls-dev", "libgnutls-dev", "python-pycurl", "wget", "ntp"]
     packages.each do |pkg|
       package pkg
     end
