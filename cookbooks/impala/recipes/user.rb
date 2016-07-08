@@ -9,12 +9,6 @@
 # Create and configure the impala developer user
 #
 
-# Create a .bashrc if one is missing from the user's directory
-cookbook_file "bashrc" do
-  path "/home/#{node['impala_dev']['username']}/.bashrc"
-  action :create_if_missing
-end
-
 # Create an .ssh directory and generate ssh keys if they don't exist
 directory "/home/#{node['impala_dev']['username']}/.ssh" do
   owner node['impala_dev']['username']

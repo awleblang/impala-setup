@@ -8,7 +8,6 @@ username = ''
 
 # User options 
 default['impala_dev']['username'] = username
-default['impala_dev']['impala_home'] = "/home/#{default['impala_dev']['username']}/dev/cloudera"
 
 # Java options
 default['java']['install_flavor'] = 'oracle'
