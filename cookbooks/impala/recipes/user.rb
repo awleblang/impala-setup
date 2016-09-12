@@ -32,3 +32,7 @@ directory "/var/lib/hadoop-hdfs" do
   group "root"
   action :create
 end
+
+user_ulimit node['impala_dev']['username'] do
+  filehandle_limit 1048576
+end
