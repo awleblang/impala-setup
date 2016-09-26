@@ -13,13 +13,15 @@ case node['platform_family']
 when "debian"
   Chef::Log.info('Debian family')
   case
-  when node['platform_version'] == '15.04', node['platform_version'] == '14.04'
+  when node['platform_version'] == "15.10", node['platform_version'] == '15.04',
+    node['platform_version'] == '14.04'
     Chef::Log.info('Version >= 14.04')
     packages = ["build-essential", "ant", "zlib1g-dev", "libbz2-dev", "python-dev",
          "automake", "libtool", "flex", "bison", "cmake", "pkg-config", "git",
          "libssl-dev", "subversion", "libevent1-dev", "libsasl2-dev", "libldap2-dev",
          "liblzo2-dev", "lzop", "maven", "libboost-all-dev", "ccache", "python-pycurl",
-	 "libgnutls-dev", "libgnutls-dev", "python-pycurl", "wget", "ntp"]
+	 "libgnutls-dev", "libgnutls-dev", "python-pycurl", "wget", "ntp",
+         "libncurses5-dev" ]
     packages.each do |pkg|
       package pkg
     end
