@@ -12,8 +12,8 @@ bash 'install_dita-ot' do
   wget https://github.com/dita-ot/dita-ot/releases/download/2.3.3/dita-ot-2.3.3.zip
   unzip dita-ot-2.3.3.zip
   sudo cp -r dita-ot-2.3.3 /opt/
-  cd ~
+  cd /
   rm -rf "${UNZIP_LOCATION}"
-  echo 'PATH=/opt/dita-ot-2.3.3/bin:"${PATH}"' >> ~/.bashrc
+  echo 'PATH=/opt/dita-ot-2.3.3/bin:"${PATH}"' >> /home/#{node['impala_dev']['username']}/.bashrc
   EOF
 end
