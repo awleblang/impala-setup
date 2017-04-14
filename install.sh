@@ -20,7 +20,7 @@ chef_binary=/usr/bin/chef-solo
 if ! test -f "$chef_binary"; then
   export DEBIAN_FRONTEND=noninteractive
   # Install Chef
-  curl -L https://www.opscode.com/chef/install.sh | bash
+  curl -L https://omnitruck.chef.io/install.sh | bash -s -- -v 12.3.0
 fi
 
 # Install git
