@@ -15,21 +15,19 @@
 # limitations under the License.
 #
 
-include_recipe "postgresql::server"
-
 db_name = node['postgresql']['database_name']
 
 # Install the PostgreSQL contrib package(s) from the distribution,
 # as specified by the node attributes.
 node['postgresql']['contrib']['packages'].each do |pg_pack|
-
   package pg_pack
-
 end
+
+include_recipe 'postgresql::server'
 
 # Install PostgreSQL contrib extentions into the database, as specified by the
 # node attribute node['postgresql']['database_name'].
-if (node['postgresql']['contrib'].attribute?('extensions'))
+if node['postgresql']['contrib'].attribute?('extensions')
   node['postgresql']['contrib']['extensions'].each do |pg_ext|
     bash "install-#{pg_ext}-extension" do
       user 'postgres'
@@ -38,7 +36,7 @@ if (node['postgresql']['contrib'].attribute?('extensions'))
       EOH
       action :run
       ::Chef::Resource.send(:include, Opscode::PostgresqlHelpers)
-      not_if {extension_installed?(pg_ext)}
+      not_if { extension_installed?(pg_ext) }
     end
   end
 end

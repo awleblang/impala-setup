@@ -13,7 +13,7 @@ case node['platform_family']
 when "debian"
   Chef::Log.info('Debian family')
   case
-  when node['platform_version'] == "15.10", node['platform_version'] == '15.04',
+  when node['platform_version'] == "16.04", node['platform_version'] == "15.10", node['platform_version'] == '15.04',
     node['platform_version'] == '14.04'
     Chef::Log.info('Version >= 14.04')
     packages = ["build-essential", "ant", "zlib1g-dev", "libbz2-dev", "python-dev",

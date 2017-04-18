@@ -16,6 +16,8 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 
 # Postgres options
 case 
+  when (node['platform_family'] == "debian" and node['platform_version'] == "16.04")
+     default['postgresql']['version'] = "9.5"
   when (node['platform_family'] == "debian" and node['platform_version'] == "15.04")
     default['postgresql']['pgdg']['release_apt_codename'] = 'trusty'
     default['postgresql']['version']  =                     '9.4'
@@ -34,7 +36,8 @@ end
 
 default['postgresql']['pg_hba'] = [{:type => 'local', :db => 'all', :user => 'postgres', :addr => nil, :method => 'trust'}, 
 			           {:type => 'host', :db => 'all', :user => 'all', :addr => '127.0.0.1/32', :method => 'trust'}, 
-				   {:type => 'host', :db => 'all', :user => 'all', :addr => '::1/128', :method => 'trust'}]
+				   {:type => 'host', :db => 'all', :user => 'all', :addr => '::1/128', :method => 'trust'}, 
+				   {:type => 'local', :db => 'all', :user => 'all', :addr => nil, :method => 'trust'}]
 default['postgresql']['password']['postgres'] = ''
 default['postgresql']['config']['standard_conforming_strings'] = 'off'
 

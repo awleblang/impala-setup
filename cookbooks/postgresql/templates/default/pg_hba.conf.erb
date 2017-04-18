@@ -18,7 +18,7 @@
 <% node['postgresql']['pg_hba'].each do |auth| -%>
 
 <%   if auth[:comment] %>
-<%= auth[:comment] %>
+# <%= auth[:comment] %>
 <%   end %>
 <%   if auth[:addr] %>
 <%= auth[:type].ljust(7) %> <%= auth[:db].ljust(15) %> <%= auth[:user].ljust(15) %> <%= auth[:addr].ljust(23) %> <%= auth[:method] %>
@@ -29,7 +29,7 @@
 
 # "local" is for Unix domain socket connections only
 <% if node['postgresql']['version'].to_f < 9.1 -%>
-local   all             all                                     trust
+local   all             all                                     ident
 <% elsif node['postgresql']['version'].to_f >= 9.1 -%>
-local   all             all                                     trust
+local   all             all                                     peer
 <% end -%>
