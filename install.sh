@@ -26,15 +26,9 @@ fi
 # Install git
 sudo apt-get install -y git
 
-cd $USER_HOME
-if ! test -d impala-setup; then
-  sudo -u $USER git clone https://github.com/awleblang/impala-setup.git
-  cd impala-setup
-else
-  cd impala-setup
-  sudo -u $USER git pull
-fi
+# Get the location of this impala-setup/ repo
+REPO_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Run chef-solo to configure the Impala dev machine
-sudo -u $USER sed -i "s/username = ''/username = '$USER'/" cookbooks/impala/attributes/default.rb
-"$chef_binary" -c solo.rb -j impala.json
+sudo -u $USER sed -i "s/username = ''/username = '$USER'/" $REPO_DIR/cookbooks/impala/attributes/default.rb
+"$chef_binary" -c $REPO_DIR/solo.rb -j $REPO_DIR/impala.json
