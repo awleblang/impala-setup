@@ -17,7 +17,7 @@ bash 'setup_pg_roles' do
   code <<-EOH
   psql -c "CREATE ROLE hiveuser LOGIN PASSWORD 'password';" postgres || true
   psql -c "ALTER ROLE hiveuser WITH CREATEDB;" postgres || true
-  sed -i 's/local   all             all                                     peer/local   all             all                                     trust/g' #{default['postgresql']['config']['hba_conf']}
+  sed -i 's/local   all             all                                     peer/local   all             all                                     trust/g' #{node['postgresql']['config']['hba_conf']}
   EOH
 end
 
