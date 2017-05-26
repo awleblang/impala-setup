@@ -18,7 +18,7 @@ when "debian"
     Chef::Log.info('Version >= 14.04')
     packages = ["g++", "gcc", "git", "libsasl2-dev", "make", "maven", "python-dev",
           "python-setuptools", "liblzo2-dev", "libkrb5-dev", "libffi-dev", "wget",
-          "tmux", "ccache", "ninja-build", "ant", "emacs-nox", "vim"]
+          "libssl-dev", "tmux", "ccache", "ninja-build", "ant", "emacs-nox", "vim"]
     packages.each do |pkg|
       package pkg
     end
