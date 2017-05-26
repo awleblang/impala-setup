@@ -9,6 +9,16 @@ username = ''
 # User options
 default['impala_dev']['username'] = username
 
+# Java options
+case
+  when (node['platform_family'] == "debian" and node['[platform_verion'] == "16.04"])
+    default['java']['version'] = '8'
+    default['java']['home'] = '/usr/lib/jvm/java-8-oracle'
+  else
+    default['java']['version'] = '7'
+    default['java']['home'] = '/usr/lib/jvm/java-7-oracle-amd64'
+end
+
 # Postgres options
 case
   when (node['platform_family'] == "debian" and node['platform_version'] == "16.04")
@@ -40,8 +50,6 @@ default['postgresql']['config']['standard_conforming_strings'] = 'off'
 default['hadoop-lzo']['branch'] = 'master'
 # Impala LZO branch
 default['impala-lzo']['branch'] = 'cdh5-trunk'
-# Impala branch
-default['impala']['branch'] = 'cdh5-trunk'
 
 # Sudo setup
 default['authorization']['sudo']['sudoers_defaults'] = [
