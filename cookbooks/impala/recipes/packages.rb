@@ -77,4 +77,3 @@ bash 'setup_lzo' do
   EOH
 end
 
-include_recipe "java::default"
