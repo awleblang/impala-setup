@@ -10,14 +10,8 @@ username = ''
 default['impala_dev']['username'] = username
 
 # Java options
-case
-  when (node['platform_family'] == "debian" and node['[platform_verion'] == "16.04")
-    default['java']['version'] = '8'
-    default['java']['home'] = '/usr/lib/jvm/java-8-oracle'
-  else
-    default['java']['version'] = '7'
-    default['java']['home'] = '/usr/lib/jvm/java-7-oracle-amd64'
-end
+default['java']['version'] = '8'
+default['java']['home'] = '/usr/lib/jvm/java-8-oracle'
 
 # Postgres options
 case
