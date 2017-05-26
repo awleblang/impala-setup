@@ -8,7 +8,7 @@
 #
 # Setup lzo sources
 
-git "/home/#{node['impala_dev']['username']}/hadoop-lzo" do 
+git "/home/#{node['impala_dev']['username']}/hadoop-lzo" do
   repository 'https://github.com/cloudera/hadoop-lzo.git'
   user node['impala_dev']['username']
   revision node['hadoop-lzo']['branch']
@@ -31,5 +31,5 @@ bash 'build_lzo' do
   git checkout #{node['hadoop-lzo']['branch']}
   ant package
   EOH
-  environment "JAVA_HOME" => "/usr/lib/jvm/java-7-oracle-amd64"
+  environment "JAVA_HOME" => "/usr/lib/jvm/java-8-oracle"
 end
