@@ -37,7 +37,7 @@ python_pkgs.each do |pkg|
 end
 
 bash 'update_ld_library_path' do
-  user node['impala_dev']['username']}
+  user node['impala_dev']['username']
   code <<-EOH
     echo 'export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH' >> /home/#{node['impala_dev']['username']}/.bashrc
   EOH
