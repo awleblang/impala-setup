@@ -17,7 +17,7 @@ when "debian"
     node['platform_version'] == '14.04'
     Chef::Log.info('Version >= 14.04')
     packages = ["g++", "gcc", "git", "libsasl2-dev", "make", "maven", "python-dev",
-          "python-setuptools", "liblzo-dev", "libkrb5-dev", "libffi-dev", "wget",
+          "python-setuptools", "liblzo2-dev", "libkrb5-dev", "libffi-dev", "wget",
           "tmux", "ccache", "ninja-build", "ant", "emacs-nox", "vim"]
     packages.each do |pkg|
       package pkg
@@ -42,3 +42,5 @@ bash 'update_ld_library_path' do
     echo 'export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH' >> /home/#{node['impala_dev']['username']}/.bashrc
   EOH
 end
+
+include_recipe "impala::java"

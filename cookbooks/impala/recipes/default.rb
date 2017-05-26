@@ -8,7 +8,6 @@
 #
 
 include_recipe "impala::packages"
-include_recipe "impala::java"
 include_recipe "impala::postgres"
 include_recipe "impala::machine"
 include_recipe "impala::user"
