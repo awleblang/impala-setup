@@ -11,7 +11,7 @@ default['impala_dev']['username'] = username
 
 # Java options
 default['java']['version'] = '7'
-default['java']['home'] = '/usr/lib/jvm/openjdk-7-amd64/jre'
+default['java']['home'] = '/usr/lib/jvm/java-7-openjdk-amd64'
 
 # Postgres options
 case
