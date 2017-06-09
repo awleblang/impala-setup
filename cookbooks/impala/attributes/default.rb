@@ -10,8 +10,8 @@ username = ''
 default['impala_dev']['username'] = username
 
 # Java options
-default['java']['version'] = '8'
-default['java']['home'] = '/usr/lib/jvm/java-8-oracle'
+default['java']['version'] = '7'
+default['java']['home'] = '/usr/lib/jvm/openjdk-7-amd64/jre/bin'
 
 # Postgres options
 case
