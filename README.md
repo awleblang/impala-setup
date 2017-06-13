@@ -7,4 +7,4 @@ Usage
 
 Simply copy the contents of `install.sh` to a local script and run `sudo ./install.sh`. The script 
 will install Chef and git, it will clone this repository and finally, it will execute the Impala recipe
-(`cookboocs/impala`) to setup the machine. 
+(`cookbooks/impala`) to setup the machine. 
